@@ -62,3 +62,17 @@
   /* justify-content: space-around; */
   justify-content: space-evenly;
 }
+
+.likes-dislikes{
+  font-size: 25px;
+
+}
+.counter-container{
+  display: flex;
+  gap: 10px;
+}
+.add-movie-form{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
