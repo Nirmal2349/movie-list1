@@ -1,0 +1,28 @@
+{
+  "folders": [
+	{
+		"path": "..\\B27 VS code"
+	},
+	{
+		"path": "..\\B27 VS code\\eventupdate"
+	},
+	{
+		"path": "..\\B27 VS code\\DOMform"
+	},
+	{
+		"path": "..\\B27 VS code\\hackathon"
+	},
+	{
+		"path": "..\\B27 VS code\\demohack"
+	},
+	{
+		"path": "..\\B27 VS code\\OCT CLASS"
+	},
+	{
+		"path": "..\\B27 VS code\\recap1"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "B27 VS code"
+  }
+}
