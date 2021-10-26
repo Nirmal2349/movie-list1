@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
+import { Movie } from "./Movie";
 
 function App() {
   return (
@@ -108,37 +109,5 @@ function MovieList() {
       </div>
     </section>
   );
-
-  function Movie({ name, poster, rating, description }) {
-    return (
-      <div className="movie-container">
-        <img className="movie-poster" src={poster} alt={name} />
-        <div className="movie-details">
-          <h2>{name}</h2>
-          <p>⭐{rating}</p>
-        </div>
-        <p>{description}</p>
-        <Counter />
-      </div>
-    );
-  }
-
-  function Counter() {
-    const [like, setLike] = useState(0);
-    const [dislike, setDislike] = useState(0);
-    return (
-      <div className="counter-container">
-        <button className="likes-dislikes" onClick={() => setLike(like + 1)}>
-          👍{like}
-        </button>
-        <button
-          className="likes-dislikes"
-          onClick={() => setDislike(dislike + 1)}
-        >
-          👎{dislike}
-        </button>
-      </div>
-    );
-  }
-}
+        }
 export default App;
