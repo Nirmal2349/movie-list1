@@ -76,3 +76,21 @@
   flex-direction: column;
   gap:10px;
 }
+.game-box{
+  height:8rem;
+  width: 8rem;
+  color:black;
+  background-color: white;
+  font-size: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid black;
+}
+.board{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  width: min-content;
+  background-color: pink;
+}

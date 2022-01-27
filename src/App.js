@@ -1,18 +1,73 @@
 import "./App.css";
 import React, { useState } from "react";
+import { ColorList } from "./ColorList";
+import { Counter } from "./Counter";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import React, { useContext, useState, createContext } from "react";
+// import ReactDOM from "react-dom";
 
 function App() {
   return (
     <div className="App">
-      <MovieList />
-      {/* <ColorBox/> */}
+      <TicTacToe />
+      {/* <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/movies">Movies</Link>
+          </li>
+          <li>
+            <Link to="/color-game">ColorGame</Link>
+          </li>
+          <li>
+            <Link to="/tic-tac-toe">tic-tac-toe</Link>
+          </li>
+        </ul>
+      </nav> */}
+
+      {/* <Switch>
+        <Route exact path="/">
+          <Welcome />
+        </Route>
+        <Route path="/movies">
+          <MovieList />
+        </Route>
+        <Route Path="/color-game">
+          <ColorList />
+        </Route>
+        <Route exact Path="/tic-tac-toe">
+          <TicTacToe />
+        </Route>
+        <Route Path="**">
+          <NotFound />
+        </Route>
+      </Switch> */}
     </div>
   );
+}
+
+function NotFound() {
+  return (
+    <div>
+      <h1>404 Not Found!</h1>
+      <img
+        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fdribbble.com%2Fsarahkeane%2Fcollections%2F422746-Animation-Inspo&psig=AOvVaw0h5xcxbuerJM8GROMYXr9B&ust=1635779660258000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKDo0Mj49PMCFQAAAAAdAAAAABAO"
+        alt="404 Not Found!"
+      />
+    </div>
+  );
+}
+
+function Welcome() {
+  return <h1>welcome all🙏</h1>;
 }
 
 function MovieList() {
   const INITIAL_MOVIES = [
     {
+      id: "100",
       name: "Pokemon",
       poster:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_MAs1sndGC2inGmuL7OOvsDO0Wx6D0UHCg&usqp=CAU",
@@ -21,6 +76,7 @@ function MovieList() {
         "Ash Ketchum from Pallet Town is 10 years old today. This means he is now old enough to become a Pokémon Trainer. Ash dreams big about the adventures he will experience after receiving his first Pokémonfrom Professor Oak.",
     },
     {
+      id: "100",
       name: "Demon Slayer",
       poster:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqyQdQ3dKsYGWDMfv6zmSbfgD4f_feVZpttQ&usqp=CAU",
@@ -29,6 +85,7 @@ function MovieList() {
         "Their mission is to defeat a demon who has been tormenting people and killing the demon slayers who oppose it.",
     },
     {
+      id: "100",
       name: "ONE PUNCH MAN",
       poster:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdH0d1ar5ryC7al6unN6lO-sP0QLq_tntKA&usqp=CAU",
@@ -37,6 +94,7 @@ function MovieList() {
         "It tells the story of Saitama, a superhero who can defeat any opponent with a single punch but seeks to find a worthy opponent after growing bored by a lack of challenge due to his overwhelming strength",
     },
     {
+      id: "100",
       name: "Beyblade Burst",
       poster:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCvmmG2SKrVju5kgGSDv-eYD_O8asmj9_pJA&usqp=CAU",
@@ -45,6 +103,7 @@ function MovieList() {
         "Valt Aoi, an elementary school student, starts practising Beyblades, spinning tops enchanted with magical spirits of different creatures, to work his way up and become a world class player",
     },
     {
+      id: "100",
       name: "Naruto Shippuden the Will of Fire",
       poster:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSAxbXvGWpJ5lK0BLK5d2cO1Z3LOHpSwetRQ&usqp=CAU",
@@ -55,6 +114,20 @@ function MovieList() {
   ];
 
   const [movies, setMovies] = useState(INITIAL_MOVIES);
+
+  //   const theme = createTheme({
+  //     palette:{
+  //       mode:"dark",
+
+  //     }
+  //   });
+  //   return(
+  //     <ThemeProvider theme={theme}>
+  //     <div className="APP">
+  //     </div>
+  //     </ThemeProvider>
+  //   );
+  // }
 
   const [name, setName] = useState("");
   const [poster, setPoster] = useState("");
@@ -97,8 +170,9 @@ function MovieList() {
       </div>
 
       <div className="movie-list">
-        {movies.map((mv) => (
+        {movies.map((mv, index) => (
           <Movie
+            key={index}
             name={mv.name}
             poster={mv.poster}
             rating={mv.rating}
@@ -111,35 +185,46 @@ function MovieList() {
 }
 
 function Movie({ name, poster, rating, description }) {
+  const [show, setShow] = useState(false);
+  // const styles = { display: show ? "block" : "none" };
   return (
     <div className="movie-container">
       <img className="movie-poster" src={poster} alt={name} />
       <div className="movie-details">
-        <h2>{name}</h2>
-        <p>⭐{rating}</p>
+        <h2 className="movie-name">{name}</h2>
+        <p className="movie-rating">⭐{rating}</p>
       </div>
-      <p>{description}</p>
+      <button onClick={() => setShow(!show)} className="movie-show-button">
+        {show ? "Hide" : "show"} description
+      </button>
+      {/* <p style={styles}>{description}</p> */}
+      {show ? <p>{description}</p> : ""}
+
       <Counter />
     </div>
   );
 }
 
-function Counter() {
-  const [like, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
+
+
+function TicTacToe() {
   return (
-    <div className="counter-container">
-      <button className="likes-dislikes" onClick={() => setLike(like + 1)}>
-        👍{like}
-      </button>
-      <button
-        className="likes-dislikes"
-        onClick={() => setDislike(dislike + 1)}
-      >
-        👎{dislike}
-      </button>
-    </div>
-  );
+  <div>
+    <GameBox/>
+    <GameBox/>
+    <GameBox/>
+    <GameBox/>
+    <GameBox/>
+    <GameBox/>
+    </div>;
+}
+
+function GameBox(){
+  const [value,setValue]=useState("")
+  return (
+  <div
+   onClick={()=>setValue(value)}className="game-box">{value}</div>
 }
 
 export default App;
+
