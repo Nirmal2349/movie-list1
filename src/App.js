@@ -216,15 +216,14 @@ function TicTacToe() {
     <GameBox/>
     <GameBox/>
     <GameBox/>
-    </div>;
-}
+    </div>
+    )}
 
 function GameBox(){
   const [value,setValue]=useState("")
   return (
   <div
-   onClick={()=>setValue(value)}className="game-box">{value}</div>
-}
+   onClick={()=>setValue(value)}className="game-box">{value}</div>)}
 
 export default App;
 
